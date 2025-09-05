@@ -453,7 +453,7 @@ CHARINFO* Font_GetChar(Font* self, int ch)
 	return &self->m_Char[CharIndex];
 }
 
-int Font_DrawChar(cl_font_t *font, rgba_t color, int x, int y, int number, int flags)
+int Font_DrawChar(cl_font_t *font,const rgba_t color, int x, int y, int number, int flags)
 {
 	CHARINFO* pCharInfo;
 	float new_x, new_y, new_w, new_h;
