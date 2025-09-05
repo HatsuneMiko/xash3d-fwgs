@@ -44,7 +44,7 @@ int Font_Init(Font* self, const char* name, int tall);
 int Font_CheckCharExists(Font* self, int ch);
 int Font_LoadChar(Font* self, int ch);
 CHARINFO* Font_GetChar(Font* self, int ch);
-int Font_DrawChar(cl_font_t *font, rgba_t color, int x, int y, int number, int flags);
+int Font_DrawChar(cl_font_t *font,const rgba_t color, int x, int y, int number, int flags);
 void Font_SetWidth(Font* self, int iWidth);
 int Font_GetTexIndex( Font *self, int codepoint );
 #endif // CL_FONT_H
