@@ -1273,7 +1273,7 @@ static void CL_CheckForResend( void )
 
 	cls.serveradr = adr;
 	//cls.max_fragment_size = CL_GetTestFragmentSize();
-	cls.max_fragment_size = 1400
+	cls.max_fragment_size = 1400;
 	cls.connect_time = host.realtime; // for retransmit requests
 	cls.connect_retry++;
 
