@@ -3963,6 +3963,7 @@ qboolean CL_LoadProgs( const char *name )
 	CL_EXPORT_FUNCS	GetClientAPI; // single export
 	qboolean valid_single_export = false;
 	qboolean missed_exports = false;
+	qboolean try_internal_vgui_support = GI->internal_vgui_support;
 	int i;
 
 	if( clgame.hInstance ) CL_UnloadProgs();
@@ -3983,10 +3984,10 @@ qboolean CL_LoadProgs( const char *name )
 
 	// NOTE: important stuff!
 	// vgui must startup BEFORE loading client.dll to avoid get error ERROR_NOACESS during LoadLibrary
-	if( !GI->internal_vgui_support && VGui_LoadProgs( NULL ))
+	if( !try_internal_vgui_support && VGui_LoadProgs( NULL ))
 		VGui_Startup( refState.width, refState.height );
 	else
-		GI->internal_vgui_support = true; // we failed to load vgui_support, but let's probe client.dll for support anyway
+		try_internal_vgui_support = true; // we failed to load vgui_support, but let's probe client.dll for support anyway
 
 	clgame.hInstance = COM_LoadLibrary( name, false, false );
 
@@ -3994,7 +3995,7 @@ qboolean CL_LoadProgs( const char *name )
 		return false;
 
 	// delayed vgui initialization for internal support
-	if( GI->internal_vgui_support && VGui_LoadProgs( clgame.hInstance ))
+	if( try_internal_vgui_support && VGui_LoadProgs( clgame.hInstance ))
 		VGui_Startup( refState.width, refState.height );
 
 	// clear exports
