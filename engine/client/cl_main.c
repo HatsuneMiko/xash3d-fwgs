@@ -1197,7 +1197,8 @@ static void CL_SendBandwidthTest( netadr_t to, qboolean start )
 	}
 	else cls.bandwidth_test.retry++;
 
-	cls.max_fragment_size = CL_GetTestFragmentSize();
+	// cls.max_fragment_size = CL_GetTestFragmentSize();
+	cls.max_fragment_size = 1400;
 	Con_Printf( "Connecting to %s... (retry #%i, test #%i)\n",
 	    cls.servername, cls.connect_retry, cls.bandwidth_test.retry );
 
